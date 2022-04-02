@@ -42,11 +42,21 @@ const Movie = ({ title, id, release_date, poster_path, overview, vote_average, v
         <div>
             <div className="movie" >
                 <img src={poster_path ? IMAGES_API_MOVIE + poster_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"} onClick={handleShow} alt={title} />
-                <i style={ıconStatus ? { color: "rgb(207, 5, 5)" } : { color: "black" }}
+                <i style={ıconStatus ? { color: "red" } : { color: "black" }}
                     className={ıconStatus ? 'heartIcon bi bi-heart-fill' : 'hidden heartIcon bi bi-heart-fill'}
-                    onClick={handlerIcon}></i>
+                    onClick={handlerIcon}>
+                </i>
+
+                <div className="">
+                    <h6 title="Avaliação dos usuários" className="movie-voteAverage">{vote_average}</h6>
+                </div>
+                {/* <div className="">
+                    <h6 className="card-title hearts"
+                        onClick={() => addFavorite(poster_path)}></h6>
+                </div> */}
+
             </div>
-            <Modal show={showStatus} onHide={handleClose} className="Modal" >
+            <Modal show={showStatus} onHide={handleClose} backdrop="static" className="Modal" >
                 <Modal.Header closeButton >
                 </Modal.Header>
                 <Modal.Body >

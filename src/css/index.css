@@ -88,23 +88,42 @@
     opacity: 0.9;
     transition: 350ms ease;
     position: relative;
+    word-wrap: break-word;
 }
-
+.movie img{
+    cursor: pointer;
+}
+.movie-voteAverage{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #1B1C22;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 3em;
+    color: #fff;
+}
 .movie .heartIcon {
     position: absolute;
-    top: 5px;
+    top: 10px;
     right: 10px;
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     z-index: 8;
-    text-shadow: 0 0 7px rgb(207, 5, 5);
+    text-shadow: 0 0 3px #fff;
+    background: #1B1C22;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    transition: all 0.2s linear;
+    -webkit-transition: all .2s linear;
 }
-
-.movie .hidden {
-    display: none;
-}
-
-.movie:hover .hidden {
-    display: block;
+.movie .heartIcon:hover{
+    transform: scale(1.1);
+    transition-duration: 0.5s;
 }
 
 .Navbar_field form {
