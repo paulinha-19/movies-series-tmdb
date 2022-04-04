@@ -3,8 +3,7 @@ import {  Route, Switch , BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home/Home";
 import MovieSearch from "./components/Search/ListSearch";
-import NotFound from "./components/PageNotFound";
-import MoviePopularDesc from "./components/Movies/Popular/MoviePopularDesc";
+import PageNotFound from "./components/PageNotFound";
 import Favorites from "./components/Favorites/Favorites";
 import Series from "./components/Series/Series";
 import MoviesHome from "./components/Movies/MovieHome";
@@ -29,7 +28,6 @@ const App = () => {
         <Switch>
           < Route path="/" exact component={Home}  />
           < Route path="/movies" exact component={MoviesHome}/>
-          < Route path="/popular" exact component={MoviePopularDesc} />
           < Route path="/series" exact component={Series} />
           < Route path="/favorites" exact component={Favorites} />
           <Route
@@ -38,7 +36,7 @@ const App = () => {
               <MovieSearch searchTerm={props.match.params.searchInput} />
             )}
           />
-          <Route exact={true} component={NotFound} />
+          <Route exact={true} component={PageNotFound} />
         </Switch>
       </div>
     </Router>

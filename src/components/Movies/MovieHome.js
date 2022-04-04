@@ -5,7 +5,7 @@ import MoviePopularDesc from "./Popular/MoviePopularDesc";
 import MovieNowPlaying from "./NowPlaying/MovieNowPlaying";
 import MovieTopRated from './TopRated/MovieTopRated';
 import MovieTrendingDay from './TrendingDay/MovieTrendingDay';
-const MovieHome = ({category}) => {
+const MovieHome = () => {
   return (
     <div>
       <MovieListHome category="Popular" popular={<MoviePopularDesc />} />
