@@ -5,6 +5,9 @@ export const MoviesContext = createContext();
 const MoviesContextProvider = props => {
   const [movies, setMovies] = useState([]);
   const [series, setSeries] = useState([]);
+  const [trendingDay, setTrendingDay] = useState([]);
+  const [nowPlaying, setNowPlaying] = useState([]);
+  const [topRated, setTopRated] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,7 +48,7 @@ const MoviesContextProvider = props => {
   }, []);
 
   return (
-    <MoviesContext.Provider value={{ movies, setMovies, series, setSeries, loading, setLoading, getSearchMovies, setFavorites, favorites, getMovieStorage, errorMessage, setErrorMessage, genres, setGenres, details, setDetails, searchTerm, setSearchTerm }}>
+    <MoviesContext.Provider value={{ movies, setMovies, series, setSeries, loading, setLoading, getSearchMovies, setFavorites, favorites, getMovieStorage, errorMessage, setErrorMessage, genres, setGenres, details, setDetails, searchTerm, setSearchTerm, topRated, setTopRated, nowPlaying, setNowPlaying, trendingDay, setTrendingDay }}>
       {props.children}
     </MoviesContext.Provider>
   );

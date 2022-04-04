@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import axios from "axios";
 import { MoviesContext } from "../context/MoviesContext";
 import { IMAGES_API_MOVIE, MOVIES_API_DETAILS, apiKey } from "../api/config";
-import StarRating from "./StarRating";
+import StarRating from "./StarRating/StarRating";
 const MovieDetail = ({ title, release_date, poster_path, overview, vote_average, vote_count, id }) => {
     const { genres, setGenres, details, setDetails, setErrorMessage, setLoading } = useContext(MoviesContext);
     useEffect(() => {

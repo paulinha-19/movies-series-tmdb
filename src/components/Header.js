@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Input from "./Input";
+import Input from "./Search/Input";
 
 const Header = ({ history, handleSubmit }) => {
   return (
@@ -11,11 +11,6 @@ const Header = ({ history, handleSubmit }) => {
         </Link>
       </div>
       <ul>
-        <li >
-          <Link to="/popular" className="popular">
-            Popular
-          </Link>
-        </li>
         <li >
           <Link to="/movies" className="movies">
             Movies

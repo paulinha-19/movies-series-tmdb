@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { MoviesContext } from '../context/MoviesContext';
-import MovieDetail from './MovieDetail';
+import MovieDetail from './DefaultDetail';
 import { IMAGES_API_MOVIE } from '../api/config';
 import { Modal } from "react-bootstrap";
 const Movie = ({ title, id, release_date, poster_path, overview, vote_average, vote_count }) => {
@@ -40,7 +40,7 @@ const Movie = ({ title, id, release_date, poster_path, overview, vote_average, v
     }
     return (
         <div>
-            <div className="movie" >
+            <div className="movie">
                 <img src={poster_path ? IMAGES_API_MOVIE + poster_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"} onClick={handleShow} alt={title} />
                 <i style={ıconStatus ? { color: "red" } : { color: "black" }}
                     className={ıconStatus ? 'heartIcon bi bi-heart-fill' : 'hidden heartIcon bi bi-heart-fill'}

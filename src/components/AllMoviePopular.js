@@ -2,7 +2,7 @@ import { MOVIES_ALL_POPULAR } from "../api/config";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { MoviesContext } from "../context/MoviesContext";
-import Movie from "./Movie";
+import DefaultPosterPath from "./DefaultPosterPath";
 import Loader from "./Loader";
 import { v4 as uuidv4 } from 'uuid';
 const AllMoviePopular = () => {
@@ -33,7 +33,7 @@ const AllMoviePopular = () => {
       {
         loading ? <Loader /> : moviesAllPopular.map((movie) => {
           return (
-            <Movie {...movie} key={uuidv4()} />
+            <DefaultPosterPath {...movie} key={uuidv4()} />
           )
         }
         )

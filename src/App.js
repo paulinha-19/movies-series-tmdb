@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import {  Route, Switch , BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/Header";
-import MovieSearch from "./components/MovieSearch";
-import NotFound from "./components/NotFound";
-import MoviePopularDesc from "./components/MoviePopularDesc";
-import Favorites from "./components/Favorites";
-import AllMoviePopular from "./components/AllMoviePopular";
-import Series from "./components/Series";
-import Movies from "./components/Movies/MovieCategoryHome";
+import Home from "./components/Home/Home";
+import MovieSearch from "./components/Search/ListSearch";
+import NotFound from "./components/PageNotFound";
+import MoviePopularDesc from "./components/Movies/Popular/MoviePopularDesc";
+import Favorites from "./components/Favorites/Favorites";
+import Series from "./components/Series/Series";
+import MoviesHome from "./components/Movies/MovieHome";
 
 const App = () => {
   const handleSubmit = (e, history, searchInput) => {
@@ -27,8 +27,8 @@ const App = () => {
           )}
         />
         <Switch>
-          < Route path="/" exact component={AllMoviePopular} />
-          < Route path="/movies" exact component={Movies} />
+          < Route path="/" exact component={Home}  />
+          < Route path="/movies" exact component={MoviesHome}/>
           < Route path="/popular" exact component={MoviePopularDesc} />
           < Route path="/series" exact component={Series} />
           < Route path="/favorites" exact component={Favorites} />

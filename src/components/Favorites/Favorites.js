@@ -1,8 +1,8 @@
 import { useContext, useState, useEffect } from "react";
-import { MoviesContext } from "../context/MoviesContext";
-import Loader from "./Loader";
-import Movie from "./Movie";
-import { apiKey } from "../api/config";
+import { MoviesContext } from "../../context/MoviesContext";
+import Loader from "../Loader";
+import Movie from "../DefaultPosterPath";
+import { apiKey } from "../../api/config";
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
 const Favorites = () => {

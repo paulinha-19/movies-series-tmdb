@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
-import { MoviesContext } from "../context/MoviesContext";
-import Loader from "./Loader";
-import Movie from "./Movie";
-import NoMovies from "./NoMovies";
+import { MoviesContext } from "../../context/MoviesContext";
+import Loader from "../Loader";
+import DefaultPosterPath from "../DefaultPosterPath";
+import SearchNotFound from "./SearchNotFound";
 
 const MovieSearch = ({ searchTerm }) => {
   const { movies, loading, getSearchMovies } = useContext(MoviesContext);
@@ -18,10 +18,10 @@ const MovieSearch = ({ searchTerm }) => {
             movies.length ?
               movies.map((movie) => {
                 return (
-                  <Movie {...movie} key={movie.id} />
+                  <DefaultPosterPath {...movie} key={movie.id} />
                 )
               })
-              : <NoMovies />
+              : <SearchNotFound />
           }
         </div>
       }

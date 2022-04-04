@@ -1,9 +1,9 @@
-import { MOVIES_DESC_POPULAR } from "../api/config";
+import { MOVIES_DESC_POPULAR } from "../../../api/config";
 import React, { useContext, useEffect } from "react";
 import axios from "axios";
-import { MoviesContext } from "../context/MoviesContext";
-import Loader from "./Loader";
-import Movie from "./Movie";
+import { MoviesContext } from "../../../context/MoviesContext";
+import Loader from "../../Loader";
+import DefaultPosterPath from "../../DefaultPosterPath";
 const MoviePopularDesc = () => {
   const { movies, setMovies, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
   useEffect(() => {
@@ -32,7 +32,7 @@ const MoviePopularDesc = () => {
             loading ? <Loader /> :
               movies.map((movie) => {
                 return (
-                  <Movie {...movie} key={movie.id} />
+                  <DefaultPosterPath {...movie} key={movie.id} />
                 );
               })
           }
