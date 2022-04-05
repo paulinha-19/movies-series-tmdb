@@ -1,25 +1,24 @@
 import React from "react";
-const NotFound = () => (
+import { Link } from "react-router-dom";
+import ImgPageNotFound from '../assets/img/page-not-found1.webp';
+const PageNotFound = () => (
   <>
-  <div className="notFound">
-
-    <div className='stars'></div>
-    <div className='stars2'></div>
-    <div className='stars3'></div>
-    <div className='title'>
-      <span className="text404">
-        404
-      </span>
-      <br />
-      <span>
-        PAGE NOT FOUND
-      </span>
-    </div>
-</div>
-
+    < div className="not-found" >
+      <div className='not-found-title'>
+        <h1 className="oops">
+          Oops!
+        </h1>
+        <h2>
+          Página não encontrada
+        </h2>
+        <p className="back-home">
+          <Link style={{textDecoration:'none'}} to="/">
+            Voltar para Home
+          </Link>
+        </p>
+      </div>
+    </div >
   </>
-
-
 );
 
-export default NotFound;
+export default PageNotFound;
