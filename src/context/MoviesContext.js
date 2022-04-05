@@ -4,10 +4,12 @@ import { SEARCH_API_MOVIE } from "../api/config";
 export const MoviesContext = createContext();
 const MoviesContextProvider = props => {
   const [movies, setMovies] = useState([]);
-  const [series, setSeries] = useState([]);
   const [trendingDay, setTrendingDay] = useState([]);
   const [nowPlaying, setNowPlaying] = useState([]);
   const [topRated, setTopRated] = useState([]);
+  const [series, setSeries] = useState([]);
+  const [seriesOnTheAir, setSeriesOnTheAir] = useState([]);
+  const [seriesTopRated, setSeriesTopRated] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,7 +50,7 @@ const MoviesContextProvider = props => {
   }, []);
 
   return (
-    <MoviesContext.Provider value={{ movies, setMovies, series, setSeries, loading, setLoading, getSearchMovies, setFavorites, favorites, getMovieStorage, errorMessage, setErrorMessage, genres, setGenres, details, setDetails, searchTerm, setSearchTerm, topRated, setTopRated, nowPlaying, setNowPlaying, trendingDay, setTrendingDay }}>
+    <MoviesContext.Provider value={{ loading, setLoading, getSearchMovies, setFavorites, favorites, getMovieStorage, errorMessage, setErrorMessage, genres, setGenres, details, setDetails, searchTerm, setSearchTerm, movies, setMovies,topRated, setTopRated, nowPlaying, setNowPlaying, trendingDay, setTrendingDay, series, setSeries, seriesOnTheAir, setSeriesOnTheAir, seriesTopRated, setSeriesTopRated}}>
       {props.children}
     </MoviesContext.Provider>
   );

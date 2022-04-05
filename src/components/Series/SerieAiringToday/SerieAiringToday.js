@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { SERIES_TOP_RATED } from '../../../api/config';
+import { SERIES_AIRING_TODAY } from '../../../api/config';
 import axios from 'axios';
 import Loader from '../../Loader';
 import DefaultPosterPath from '../../DefaultPosterPath';
@@ -9,16 +9,16 @@ import { MoviesContext } from '../../../context/MoviesContext';
 import '../../Movies/MovieList/MovieListHome.css'
 
 
-const SerieTopRated = () => {
-  const { seriesTopRated, setSeriesTopRated, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
+const SerieAiringToday = () => {
+  const { seriesOnTheAir, setSeriesOnTheAir, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
   useEffect(() => {
-    getSeriesTop(SERIES_TOP_RATED);
+    getSeriesAir(SERIES_AIRING_TODAY);
   });
-  const getSeriesTop = async (URL_API) => {
+  const getSeriesAir = async (URL_API) => {
     try {
       const seriesResponse = await axios(URL_API);
       const dataSerie = (seriesResponse.data.results);
-      setSeriesTopRated(dataSerie);
+      setSeriesOnTheAir(dataSerie);
       setErrorMessage("");
     }
     catch (error) {
@@ -33,13 +33,13 @@ const SerieTopRated = () => {
   return (
     <>
       <div className="row">
-        <h2 className="row__title">Bem avaliados TMDB</h2>
+        <h2 className="row__title">Series no ar</h2>
       </div>
       {
         <div className="movieList  container d-flex flex-wrap justify-content-center  mt-4" >
           {
             loading ? <Loader /> :
-            seriesTopRated.map((serie) => {
+              seriesOnTheAir.map((serie) => {
                 return (
                   <DefaultPosterPath {...serie} key={serie.id} />
                 );
@@ -51,4 +51,4 @@ const SerieTopRated = () => {
   )
 }
 
-export default SerieTopRated
+export default SerieAiringToday

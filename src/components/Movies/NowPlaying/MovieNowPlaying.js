@@ -5,6 +5,9 @@ import Loader from '../../Loader';
 import { MoviesContext } from '../../../context/MoviesContext';
 //api
 import { MOVIES_NOW_PLAYING } from '../../../api/config';
+//css
+import '../MovieList/MovieListHome.css';
+
 const MovieNowPlaying = () => {
     const { nowPlaying, setNowPlaying, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
     useEffect(() => {
@@ -27,11 +30,14 @@ const MovieNowPlaying = () => {
     }
     return (
         <>
+            <div className="row">
+                <h2 className="row__title">No cinema</h2>
+            </div>
             {
                 <div className="movieList  container d-flex flex-wrap justify-content-center  mt-4" >
                     {
                         loading ? <Loader /> :
-                        nowPlaying.map((movie) => {
+                            nowPlaying.map((movie) => {
                                 return (
                                     <DefaultPosterPath {...movie} key={movie.id} />
                                 );

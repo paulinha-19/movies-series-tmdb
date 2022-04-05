@@ -30,6 +30,9 @@ const MovieTrendingDay = () => {
   }
   return (
     <>
+      <div className="row">
+        <h2 className="row__title">Tendências globais</h2>
+      </div>
       {
         <div className="movieList  container d-flex flex-wrap justify-content-center  mt-4" >
           {

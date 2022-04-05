@@ -1,9 +1,9 @@
-import { MOVIES_ALL_POPULAR } from "../api/config";
+import { MOVIES_ALL_POPULAR } from "../../api/config";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { MoviesContext } from "../context/MoviesContext";
-import DefaultPosterPath from "./DefaultPosterPath";
-import Loader from "./Loader";
+import { MoviesContext } from "../../context/MoviesContext";
+import DefaultPosterPath from "../DefaultPosterPath";
+import Loader from "../Loader";
 import { v4 as uuidv4 } from 'uuid';
 const AllMoviePopular = () => {
   const { loading, setLoading } = useContext(MoviesContext);

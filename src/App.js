@@ -1,12 +1,12 @@
 import React from "react";
-import {  Route, Switch , BrowserRouter as Router } from "react-router-dom";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home/Home";
 import MovieSearch from "./components/Search/ListSearch";
 import PageNotFound from "./components/PageNotFound";
 import Favorites from "./components/Favorites/Favorites";
-import Series from "./components/Series/Series";
 import MoviesHome from "./components/Movies/MovieHome";
+import SeriesHome from "./components/Series/SeriesHome";
 
 const App = () => {
   const handleSubmit = (e, history, searchInput) => {
@@ -20,15 +20,15 @@ const App = () => {
         <Route
           render={props => (
             <Header
-              // handleSubmit={handleSubmit}
-              // history={props.history}
+            // handleSubmit={handleSubmit}
+            // history={props.history}
             />
           )}
         />
         <Switch>
-          < Route path="/" exact component={Home}  />
-          < Route path="/movies" exact component={MoviesHome}/>
-          < Route path="/series" exact component={Series} />
+          < Route path="/" exact component={Home} />
+          < Route path="/movies" exact component={MoviesHome} />
+          < Route path="/series" exact component={SeriesHome} />
           < Route path="/favorites" exact component={Favorites} />
           <Route
             path="/search/:searchInput"

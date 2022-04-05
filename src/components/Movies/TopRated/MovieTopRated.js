@@ -5,6 +5,8 @@ import Loader from '../../Loader';
 import { MoviesContext } from '../../../context/MoviesContext';
 //api
 import { MOVIES_TOP_RATED } from '../../../api/config';
+//css
+import '../MovieList/MovieListHome.css'
 
 const MovieTopRated = () => {
   const { topRated, setTopRated, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
@@ -28,6 +30,9 @@ const MovieTopRated = () => {
   }
   return (
     <>
+      <div className="row">
+        <h2 className="row__title">Bem avaliados TMDB</h2>
+      </div>
       {
         <div className="movieList  container d-flex flex-wrap justify-content-center  mt-4" >
           {
