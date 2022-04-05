@@ -3,7 +3,7 @@ import { MoviesContext } from '../context/MoviesContext';
 import MovieDetail from './DefaultDetail';
 import { IMAGES_API_MOVIE } from '../api/config';
 import { Modal } from "react-bootstrap";
-const Movie = ({ title, id, release_date, poster_path, overview, vote_average, vote_count }) => {
+const Movie = ({ title, id, release_date, poster_path, overview, vote_average, vote_count, category }) => {
     const { favorites, setFavorites, getMovieStorage, setErrorMessage, loading, setLoading } = useContext(MoviesContext);
     const [showStatus, setShowStatus] = useState(false);
     const handleShow = () => setShowStatus(true);

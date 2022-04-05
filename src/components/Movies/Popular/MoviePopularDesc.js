@@ -32,7 +32,7 @@ const MoviePopularDesc = () => {
             loading ? <Loader /> :
               movies.map((movie) => {
                 return (
-                  <DefaultPosterPath {...movie} key={movie.id} />
+                  <DefaultPosterPath {...movie} key={movie.id}/>
                 );
               })
           }

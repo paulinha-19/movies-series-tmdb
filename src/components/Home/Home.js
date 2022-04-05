@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
+//componentes
 import MoviePopularDesc from '../Movies/Popular/MoviePopularDesc';
+import SeriePopular from '../Series/SeriePopular/SeriePopular';
+import MovieHome from '../Movies/MovieHome';
 import Loader from '../Loader';
 //context
 import { MoviesContext } from '../../context/MoviesContext';
