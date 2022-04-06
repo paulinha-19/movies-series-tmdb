@@ -4,7 +4,7 @@ import { MoviesContext } from "../context/MoviesContext";
 import { IMAGES_API_MOVIE, MOVIES_API_DETAILS, apiKey } from "../api/config";
 import StarRating from "./StarRating/StarRating";
 const MovieDetail = ({ title, release_date, poster_path, overview, vote_average, vote_count, id }) => {
-    const { genres, setGenres, details, setDetails, setErrorMessage, setLoading } = useContext(MoviesContext);
+    const { genres, setGenres, setDetails, setErrorMessage, setLoading } = useContext(MoviesContext);
     useEffect(() => {
         getDetails(MOVIES_API_DETAILS);
       },[]);

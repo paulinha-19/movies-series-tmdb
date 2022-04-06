@@ -16,7 +16,6 @@ const MoviesContextProvider = props => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [genres, setGenres] = useState([]);
   const [details, setDetails] = useState("");
-
   const getSearchMovies = async (searchValue) => {
     try {
       const searchResponse = await axios(`${SEARCH_API_MOVIE}${searchValue}`);
@@ -33,7 +32,7 @@ const MoviesContextProvider = props => {
       setLoading(false);
     }
   }
-  const getMovieStorage = () => {
+  const getMovieOrSerieStorage = () => {
     if (localStorage.getItem("favorites")) {
       let favoriteList = JSON.parse(localStorage.getItem("favorites"));
       return favoriteList
@@ -44,13 +43,13 @@ const MoviesContextProvider = props => {
     }
   }
   useEffect(() => {
-    const favoriteList = getMovieStorage();
+    const favoriteList = getMovieOrSerieStorage();
     setFavorites(favoriteList);
     getSearchMovies();
   }, []);
 
   return (
-    <MoviesContext.Provider value={{ loading, setLoading, getSearchMovies, setFavorites, favorites, getMovieStorage, errorMessage, setErrorMessage, genres, setGenres, details, setDetails, searchTerm, setSearchTerm, movies, setMovies,topRated, setTopRated, nowPlaying, setNowPlaying, trendingDay, setTrendingDay, series, setSeries, seriesOnTheAir, setSeriesOnTheAir, seriesTopRated, setSeriesTopRated}}>
+    <MoviesContext.Provider value={{ loading, setLoading, getSearchMovies, setFavorites, favorites, getMovieOrSerieStorage, errorMessage, setErrorMessage, genres, setGenres, setDetails, searchTerm, setSearchTerm, movies, setMovies, topRated, setTopRated, nowPlaying, setNowPlaying, trendingDay, setTrendingDay, series, setSeries, seriesOnTheAir, setSeriesOnTheAir, seriesTopRated, setSeriesTopRated }}>
       {props.children}
     </MoviesContext.Provider>
   );

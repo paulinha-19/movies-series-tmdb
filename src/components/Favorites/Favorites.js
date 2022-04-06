@@ -6,7 +6,7 @@ import { apiKey } from "../../api/config";
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
 const Favorites = () => {
-    const { favorites, loading, setLoading } = useContext(MoviesContext)
+    const { favorites, loading, setLoading } = useContext(MoviesContext);
     const [favoriList, setFavoriList] = useState([])
     useEffect(() => {
         setTimeout(() => {
@@ -22,7 +22,7 @@ const Favorites = () => {
             const res = movieJson.data
             data.push(res)
             if (data.length === index + 1) {
-                setFavoriList([...favoriList.concat(data)])
+                setFavoriList([...favoriList.concat(data)]);
             }
         });
     }

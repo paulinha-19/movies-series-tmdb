@@ -3,58 +3,58 @@ import { MoviesContext } from '../context/MoviesContext';
 import MovieDetail from './DefaultDetail';
 import { IMAGES_API_MOVIE } from '../api/config';
 import { Modal } from "react-bootstrap";
-const Movie = ({ title, id, release_date, poster_path, overview, vote_average, vote_count, category }) => {
-    const { favorites, setFavorites, getMovieStorage, setErrorMessage, loading, setLoading } = useContext(MoviesContext);
+//icons
+import { FaRegHeart } from "react-icons/fa";
+//img
+import NoImg from '../assets/img/no-image2.jpg';
+
+const DefaultPosterPath = ({ title, id, release_date, poster_path, overview, vote_average, vote_count }) => {
+    const { favorites, setFavorites, getMovieOrSerieStorage, setErrorMessage, loading, setLoading } = useContext(MoviesContext);
     const [showStatus, setShowStatus] = useState(false);
     const handleShow = () => setShowStatus(true);
     const handleClose = () => setShowStatus(false);
-    const [ıconStatus, setıconStatus] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(false);
     useEffect(() => {
         if (favorites.includes(id)) {
-            setıconStatus(!ıconStatus);
+            setIsFavorite(!isFavorite);
         }
     }, []);
     const handlerIcon = (e) => {
-        setıconStatus(!ıconStatus);
-        if (ıconStatus) {
+        setIsFavorite(!isFavorite);
+        if (isFavorite) {
             var index = favorites.indexOf(id);
             favorites.splice(index, 1);
             setFavorites(favorites);
-            deleteMovieToStorage(id);
+            deleteMovieOrSerie(id);
         }
         else {
             setFavorites(favorites.concat([id]));
-            addMovieToStorage(id);
+            addMovieOrSerie(id);
         }
     }
-    const deleteMovieToStorage = (id) => {
-        const FavoriList = getMovieStorage();
+    const deleteMovieOrSerie = (id) => {
+        const FavoriList = getMovieOrSerieStorage();
         var index = FavoriList.indexOf(id)
         FavoriList.splice(index, 1);
-        localStorage.setItem("myFavoriList", JSON.stringify(FavoriList))
+        localStorage.setItem("myFavoriList", JSON.stringify(FavoriList));
     }
-    const addMovieToStorage = (id) => {
-        const FavoriList = getMovieStorage();
+    const addMovieOrSerie = (id) => {
+        const FavoriList = getMovieOrSerieStorage();
         FavoriList.push(id)
         localStorage.setItem("myFavoriList", JSON.stringify(FavoriList))
     }
     return (
         <div>
             <div className="movie">
-                <img src={poster_path ? IMAGES_API_MOVIE + poster_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"} onClick={handleShow} alt={title} />
-                <i style={ıconStatus ? { color: "red" } : { color: "black" }}
-                    className={ıconStatus ? 'heartIcon bi bi-heart-fill' : 'hidden heartIcon bi bi-heart-fill'}
+                <img src={poster_path ? IMAGES_API_MOVIE + poster_path : NoImg} onClick={handleShow} alt={title} />
+                <i style={isFavorite ? { color: "#ff0000" } : { color: "#000" }}
+                    className={isFavorite ? 'heartIcon bi bi-heart-fill' : 'hidden heartIcon bi bi-heart-fill'}
+                    // className={isFavorite ? <FaRegHeart className='heartIcon'/> : <FaRegHeart className='hidden heartIcon'/>}
                     onClick={handlerIcon}>
                 </i>
-
                 <div className="">
                     <h6 title="Avaliação dos usuários" className="movie-voteAverage">{vote_average}</h6>
                 </div>
-                {/* <div className="">
-                    <h6 className="card-title hearts"
-                        onClick={() => addFavorite(poster_path)}></h6>
-                </div> */}
-
             </div>
             <Modal show={showStatus} onHide={handleClose} backdrop="static" className="Modal" >
                 <Modal.Header closeButton >
@@ -67,4 +67,4 @@ const Movie = ({ title, id, release_date, poster_path, overview, vote_average, v
     );
 }
 
-export default Movie;
+export default DefaultPosterPath;
