@@ -9,25 +9,25 @@ import { MOVIES_NOW_PLAYING } from '../../../api/config';
 import '../MovieList/MovieListHome.css';
 
 const MovieNowPlaying = () => {
-    const { nowPlaying, setNowPlaying, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
-    useEffect(() => {
-        getMoviesNowPlaying(MOVIES_NOW_PLAYING);
-    });
-    const getMoviesNowPlaying = async (URL_API) => {
-        try {
-            const moviesResponse = await axios(URL_API);
-            const dataMovie = (moviesResponse.data.results);
-            setNowPlaying(dataMovie);
-            setErrorMessage("");
-        }
-        catch (error) {
-            alert(error.message);
-            setErrorMessage(error.message);
-        }
-        finally {
-            setLoading(false);
-        }
-    }
+    const { nowPlaying, getMoviesNowPlaying, setNowPlaying, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
+    // useEffect(() => {
+    //     getMoviesNowPlaying(MOVIES_NOW_PLAYING);
+    // });
+    // const getMoviesNowPlaying = async (URL_API) => {
+    //     try {
+    //         const moviesResponse = await axios(URL_API);
+    //         const dataMovie = (moviesResponse.data.results);
+    //         setNowPlaying(dataMovie);
+    //         setErrorMessage("");
+    //     }
+    //     catch (error) {
+    //         alert(error.message);
+    //         setErrorMessage(error.message);
+    //     }
+    //     finally {
+    //         setLoading(false);
+    //     }
+    // }
     return (
         <>
             <div className="row">

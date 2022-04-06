@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import Header from "./components/Header";
+import Nav from "./components/Nav";
 import Home from "./components/Home/Home";
 import MovieSearch from "./components/Search/ListSearch";
 import PageNotFound from "./components/PageNotFound";
@@ -9,22 +9,10 @@ import MoviesHome from "./components/Movies/MovieHome";
 import SeriesHome from "./components/Series/SeriesHome";
 
 const App = () => {
-  const handleSubmit = (e, history, searchInput) => {
-    e.preventDefault();
-    let url = `/search/${searchInput}`;
-    history.push(url);
-  };
   return (
     <Router >
       <div className="App">
-        <Route
-          render={props => (
-            <Header
-            // handleSubmit={handleSubmit}
-            // history={props.history}
-            />
-          )}
-        />
+        <Nav />
         <Switch>
           < Route path="/" exact component={Home} />
           < Route path="/movies" exact component={MoviesHome} />

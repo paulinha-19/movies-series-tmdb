@@ -1,27 +1,20 @@
-import React, { useState,useRef } from "react";
+import React, { useContext } from "react";
+import { MoviesContext } from "../../context/MoviesContext";
 
-const Input = ({ handleSubmit, history }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const a = useRef(null);
+const Input = () => {
+  const { handleSubmit, handleChange } = useContext(MoviesContext);
   return (
-    <form
-      className="search-form"
-      onSubmit={e => {
-        handleSubmit(e, history, searchTerm);
-        a.current.blur();
-      } }
-    >
+    <form onsubmit={handleSubmit} className="search-form">
       <input
         type="text"
         name="search"
-        ref={a}
-        placeholder="Pesquisar"
-        className=" m-4"
-        onChange= {(e)=> setSearchTerm(e.target.value)}
-        value={searchTerm}
+        placeholder="Pesquisar filme/serie"
+        className="m-4"
+        onChange={handleChange}
       />
-
-        <button type="submit" className={searchTerm.trim() ? 'searchBtn' : 'disBtn'}  ><i className="bi bi-search "></i> </button>
+      <button type="submit">
+        <i className="bi bi-search "></i>
+      </button>
     </form>
   );
 };

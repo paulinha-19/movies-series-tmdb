@@ -27,7 +27,7 @@ const Header = ({ history, handleSubmit }) => {
           </Link>
         </li>
       </ul>
-      <Input history={history} handleSubmit={handleSubmit} />
+      <Input />
     </div>
   );
 };

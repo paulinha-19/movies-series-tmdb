@@ -9,25 +9,25 @@ import '../MovieList/MovieListHome.css';
 import { MOVIES_TRENDING_DAY } from '../../../api/config';
 
 const MovieTrendingDay = () => {
-  const { trendingDay, setTrendingDay, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
-  useEffect(() => {
-    getTrendingDay(MOVIES_TRENDING_DAY);
-  });
-  const getTrendingDay = async (URL_API) => {
-    try {
-      const moviesResponse = await axios(URL_API);
-      const dataMovie = (moviesResponse.data.results);
-      setTrendingDay(dataMovie);
-      setErrorMessage("");
-    }
-    catch (error) {
-      alert(error.message);
-      setErrorMessage(error.message);
-    }
-    finally {
-      setLoading(false);
-    }
-  }
+  const { trendingDay, getTrendingDay, setTrendingDay, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
+  // useEffect(() => {
+  //   getTrendingDay(MOVIES_TRENDING_DAY);
+  // });
+  // const getTrendingDay = async (URL_API) => {
+  //   try {
+  //     const moviesResponse = await axios(URL_API);
+  //     const dataMovie = (moviesResponse.data.results);
+  //     setTrendingDay(dataMovie);
+  //     setErrorMessage("");
+  //   }
+  //   catch (error) {
+  //     alert(error.message);
+  //     setErrorMessage(error.message);
+  //   }
+  //   finally {
+  //     setLoading(false);
+  //   }
+  // }
   return (
     <>
       <div className="row">

@@ -9,25 +9,25 @@ import { MOVIES_TOP_RATED } from '../../../api/config';
 import '../MovieList/MovieListHome.css'
 
 const MovieTopRated = () => {
-  const { topRated, setTopRated, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
-  useEffect(() => {
-    getMoviesTopRated(MOVIES_TOP_RATED);
-  });
-  const getMoviesTopRated = async (URL_API) => {
-    try {
-      const moviesResponse = await axios(URL_API);
-      const dataMovie = (moviesResponse.data.results);
-      setTopRated(dataMovie);
-      setErrorMessage("");
-    }
-    catch (error) {
-      alert(error.message);
-      setErrorMessage(error.message);
-    }
-    finally {
-      setLoading(false);
-    }
-  }
+  const { topRated, getMoviesTopRated, setTopRated, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
+  // useEffect(() => {
+  //   getMoviesTopRated(MOVIES_TOP_RATED);
+  // });
+  // const getMoviesTopRated = async (URL_API) => {
+  //   try {
+  //     const moviesResponse = await axios(URL_API);
+  //     const dataMovie = (moviesResponse.data.results);
+  //     setTopRated(dataMovie);
+  //     setErrorMessage("");
+  //   }
+  //   catch (error) {
+  //     alert(error.message);
+  //     setErrorMessage(error.message);
+  //   }
+  //   finally {
+  //     setLoading(false);
+  //   }
+  // }
   return (
     <>
       <div className="row">

@@ -17,7 +17,7 @@ export const MOVIES_NOW_PLAYING = `https://api.themoviedb.org/3/movie/now_playin
 //próximos filmes nos cinemas
 export const MOVIES_UPCOMING = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`;
 
-export const SEARCH_API_MOVIE = `https://api.themoviedb.org/3/search/movie?&api_key=${apiKey}&query=`;
+export const SEARCH_API_MOVIE = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`;
 export const MOVIES_API_DETAILS = `https://api.themoviedb.org/3/movie/`;
 
 //SERIES

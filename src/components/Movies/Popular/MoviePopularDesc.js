@@ -7,25 +7,25 @@ import DefaultPosterPath from "../../DefaultPosterPath";
 //css
 import '../MovieList/MovieListHome.css';
 const MoviePopularDesc = () => {
-  const { movies, setMovies, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
-  useEffect(() => {
-    getMovies(MOVIES_DESC_POPULAR);
-  });
-  const getMovies = async (URL_API) => {
-    try {
-      const moviesResponse = await axios(URL_API);
-      const dataMovie = (moviesResponse.data.results);
-      setMovies(dataMovie);
-      setErrorMessage("");
-    }
-    catch (error) {
-      alert(error.message);
-      setErrorMessage(error.message);
-    }
-    finally {
-      setLoading(false);
-    }
-  }
+  const { movies, getMovies, setMovies, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
+  // useEffect(() => {
+  //   getMovies(MOVIES_DESC_POPULAR);
+  // });
+  // const getMovies = async (URL_API) => {
+  //   try {
+  //     const moviesResponse = await axios(URL_API);
+  //     const dataMovie = (moviesResponse.data.results);
+  //     setMovies(dataMovie);
+  //     setErrorMessage("");
+  //   }
+  //   catch (error) {
+  //     alert(error.message);
+  //     setErrorMessage(error.message);
+  //   }
+  //   finally {
+  //     setLoading(false);
+  //   }
+  // }
   return (
     <>
       <div className="row">

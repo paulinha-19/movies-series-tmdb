@@ -29,11 +29,9 @@ const Favorites = () => {
     return (
         <>
             <div className="tit ">
-                <div id="heart"></div>
                 <span>
                     Lista de favoritos
                 </span>
-                <div id="heart"></div>
             </div>
             {
                 loading ? <Loader /> :
