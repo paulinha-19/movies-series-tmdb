@@ -1,33 +1,15 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import DefaultPosterPath from '../../DefaultPosterPath';
-import axios from 'axios';
 import Loader from '../../Loader';
 import { MoviesContext } from '../../../context/MoviesContext';
-//api
-import { MOVIES_NOW_PLAYING } from '../../../api/config';
+//query
+import { useQuery } from 'react-query';
 //css
 import '../MovieList/MovieListHome.css';
 
 const MovieNowPlaying = () => {
-    const { nowPlaying, getMoviesNowPlaying, setNowPlaying, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
-    // useEffect(() => {
-    //     getMoviesNowPlaying(MOVIES_NOW_PLAYING);
-    // });
-    // const getMoviesNowPlaying = async (URL_API) => {
-    //     try {
-    //         const moviesResponse = await axios(URL_API);
-    //         const dataMovie = (moviesResponse.data.results);
-    //         setNowPlaying(dataMovie);
-    //         setErrorMessage("");
-    //     }
-    //     catch (error) {
-    //         alert(error.message);
-    //         setErrorMessage(error.message);
-    //     }
-    //     finally {
-    //         setLoading(false);
-    //     }
-    // }
+    const { getMovieNowPlaying } = useContext(MoviesContext);
+    const { data, isError, error, isLoading } = useQuery('tmdb', getMovieNowPlaying);
     return (
         <>
             <div className="row">
@@ -36,13 +18,16 @@ const MovieNowPlaying = () => {
             {
                 <div className="movieList  container d-flex flex-wrap justify-content-center  mt-4" >
                     {
-                        loading ? <Loader /> :
-                            nowPlaying.map((movie) => {
-                                return (
-                                    <DefaultPosterPath {...movie} key={movie.id} />
-                                );
-                            })
-                    }
+                        isLoading ? <Loader />
+                            : isError ? (
+                                <p>{error.message}</p>
+                            ) : (
+                                data.map((movie) => {
+                                    return (
+                                        <DefaultPosterPath {...movie} key={movie.id} />
+                                    );
+                                })
+                            )}
                 </div>
             }
         </>

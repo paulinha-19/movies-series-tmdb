@@ -1,31 +1,16 @@
-import { MOVIES_DESC_POPULAR } from "../../../api/config";
-import React, { useContext, useEffect } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
 import { MoviesContext } from "../../../context/MoviesContext";
 import Loader from "../../Loader";
 import DefaultPosterPath from "../../DefaultPosterPath";
+//query
+import { useQuery } from "react-query";
 //css
 import '../MovieList/MovieListHome.css';
+
 const MoviePopularDesc = () => {
-  const { movies, getMovies, setMovies, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
-  // useEffect(() => {
-  //   getMovies(MOVIES_DESC_POPULAR);
-  // });
-  // const getMovies = async (URL_API) => {
-  //   try {
-  //     const moviesResponse = await axios(URL_API);
-  //     const dataMovie = (moviesResponse.data.results);
-  //     setMovies(dataMovie);
-  //     setErrorMessage("");
-  //   }
-  //   catch (error) {
-  //     alert(error.message);
-  //     setErrorMessage(error.message);
-  //   }
-  //   finally {
-  //     setLoading(false);
-  //   }
-  // }
+  const { getMoviePopular } = useContext(MoviesContext);
+  const { data, isLoading, isError, error } = useQuery("users", getMoviePopular);
+
   return (
     <>
       <div className="row">
@@ -34,13 +19,16 @@ const MoviePopularDesc = () => {
       {
         <div className="movieList  container d-flex flex-wrap justify-content-center  mt-4" >
           {
-            loading ? <Loader /> :
-              movies.map((movie) => {
-                return (
-                  <DefaultPosterPath {...movie} key={movie.id} />
-                );
-              })
-          }
+            isLoading ? <Loader />
+              : isError ? (
+                <p>{error.message}</p>
+              ) : (
+                data.map((movie) => {
+                  return (
+                    <DefaultPosterPath {...movie} key={movie.id} />
+                  );
+                })
+              )}
         </div>
       }
     </>

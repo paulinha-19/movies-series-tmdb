@@ -1,33 +1,16 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import DefaultPosterPath from '../../DefaultPosterPath';
-import axios from 'axios';
 import Loader from '../../Loader';
 import { MoviesContext } from '../../../context/MoviesContext';
+//query
+import { useQuery } from 'react-query';
 //css
 import '../MovieList/MovieListHome.css';
-//api
-import { MOVIES_TRENDING_DAY } from '../../../api/config';
+
 
 const MovieTrendingDay = () => {
-  const { trendingDay, getTrendingDay, setTrendingDay, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
-  // useEffect(() => {
-  //   getTrendingDay(MOVIES_TRENDING_DAY);
-  // });
-  // const getTrendingDay = async (URL_API) => {
-  //   try {
-  //     const moviesResponse = await axios(URL_API);
-  //     const dataMovie = (moviesResponse.data.results);
-  //     setTrendingDay(dataMovie);
-  //     setErrorMessage("");
-  //   }
-  //   catch (error) {
-  //     alert(error.message);
-  //     setErrorMessage(error.message);
-  //   }
-  //   finally {
-  //     setLoading(false);
-  //   }
-  // }
+  const { getMovieTrendingDay } = useContext(MoviesContext);
+  const { data, isError, error, isLoading } = useQuery('tmdb', getMovieTrendingDay);
   return (
     <>
       <div className="row">
@@ -36,17 +19,20 @@ const MovieTrendingDay = () => {
       {
         <div className="movieList  container d-flex flex-wrap justify-content-center  mt-4" >
           {
-            loading ? <Loader /> :
-              trendingDay.map((movie) => {
-                return (
-                  <DefaultPosterPath {...movie} key={movie.id} />
-                );
-              })
-          }
+            isLoading ? <Loader />
+              : isError ? (
+                <p>{error.message}</p>
+              ) : (
+                data.map((movie) => {
+                  return (
+                    <DefaultPosterPath {...movie} key={movie.id} />
+                  );
+                })
+              )}
         </div>
       }
     </>
-  )
+  );
 }
 
 export default MovieTrendingDay

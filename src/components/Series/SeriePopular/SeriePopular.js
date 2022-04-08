@@ -1,34 +1,16 @@
-import React, { useContext, useEffect } from 'react';
-import { SERIES_DESC_POPULAR } from '../../../api/config';
-import axios from 'axios';
+import React, { useContext } from 'react';
 import Loader from '../../Loader';
 import DefaultPosterPath from '../../DefaultPosterPath';
-//context
 import { MoviesContext } from '../../../context/MoviesContext';
+//query
+import { useQuery } from 'react-query';
 //css
 import '../../Movies/MovieList/MovieListHome.css'
 
 
 const SeriePopular = () => {
-  const { series, setSeries, loading, setLoading, errorMessage, setErrorMessage } = useContext(MoviesContext);
-  useEffect(() => {
-    getSeries(SERIES_DESC_POPULAR);
-  });
-  const getSeries = async (URL_API) => {
-    try {
-      const seriesResponse = await axios(URL_API);
-      const dataSerie = (seriesResponse.data.results);
-      setSeries(dataSerie);
-      setErrorMessage("");
-    }
-    catch (error) {
-      alert(error.message);
-      setErrorMessage(error.message);
-    }
-    finally {
-      setLoading(false);
-    }
-  }
+  const { getSeriePopular } = useContext(MoviesContext);
+  const { data, isError, error, isLoading } = useQuery('tmdb', getSeriePopular);
 
   return (
     <>
@@ -38,13 +20,16 @@ const SeriePopular = () => {
       {
         <div className="movieList  container d-flex flex-wrap justify-content-center  mt-4" >
           {
-            loading ? <Loader /> :
-              series.map((serie) => {
-                return (
-                  <DefaultPosterPath {...serie} key={serie.id} />
-                );
-              })
-          }
+            isLoading ? <Loader />
+              : isError ? (
+                <p>{error.message}</p>
+              ) : (
+                data.map((movie) => {
+                  return (
+                    <DefaultPosterPath {...movie} key={movie.id} />
+                  );
+                })
+              )}
         </div>
       }
     </>

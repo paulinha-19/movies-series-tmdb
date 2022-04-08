@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 //components
 import MoviePopularDesc from "./Popular/MoviePopularDesc";
 import MovieNowPlaying from "./NowPlaying/MovieNowPlaying";

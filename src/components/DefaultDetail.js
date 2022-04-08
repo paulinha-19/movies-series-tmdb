@@ -1,32 +1,41 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import axios from "axios";
-import { MoviesContext } from "../context/MoviesContext";
 import { IMAGES_API_MOVIE, MOVIES_API_DETAILS, apiKey } from "../api/config";
 import StarRating from "./StarRating/StarRating";
+//query
+import { useQuery } from "react-query";
 const MovieDetail = ({ title, release_date, poster_path, overview, vote_average, vote_count, id }) => {
-    const { genres, setGenres, setDetails, setErrorMessage, setLoading } = useContext(MoviesContext);
-    useEffect(() => {
-        getDetails(MOVIES_API_DETAILS);
-      },[]);
-    const getDetails = async (URL_DETAILS) => {
-        try {
-            const moviesResponse = await axios(`${URL_DETAILS}${id}?api_key=${apiKey}&language=en-US`);
-            const detailsMovie = (moviesResponse.data);
-            setDetails(detailsMovie);
-            setGenres(detailsMovie.genres);
-            setErrorMessage("");
-        }
-        catch (error) {
-            alert(error.message);
-            setErrorMessage(error.message);
-        }
-        finally {
-            // setLoading(false);
-            setTimeout(() => {
-                setLoading(false);
-            }, 3000);
-        }
+    // const { genres, setGenres, setDetails } = useContext(MoviesContext);
+    const getDatail = async () => {
+        const detailResponse = await axios(`${MOVIES_API_DETAILS}${id}?api_key=${apiKey}&language=en-US`);
+        const data = (detailResponse.data.genres);
+        return data;
     }
+    
+    const { data, isError, error, isLoading } = useQuery('tmdb', getDatail);
+
+    
+    // useEffect(() => {
+    //     getDetails(MOVIES_API_DETAILS);
+    // }, []);
+    // const getDetails = async (URL_DETAILS) => {
+    //     try {
+    //         const moviesResponse = await axios(`${URL_DETAILS}${id}?api_key=${apiKey}&language=en-US`);
+    //         const detailsMovie = (moviesResponse.data);
+    //         setDetails(detailsMovie);
+    //         setGenres(detailsMovie.genres);
+    //         setErrorMessage("");
+    //     }
+    //     catch (error) {
+    //         alert(error.message);
+    //         setErrorMessage(error.message);
+    //     }
+    //     finally {
+    //         setTimeout(() => {
+    //             setLoading(false);
+    //         }, 3000);
+    //     }
+    // }
     return (
         <div className="movie_detail">
             <section>
@@ -67,7 +76,7 @@ const MovieDetail = ({ title, release_date, poster_path, overview, vote_average,
                 <div className="vote_averageField">
                     <b>Genre:</b>
                     <span>
-                        {genres.map(genre => genre.name).join(", ")}
+                        {data.map(genre => genre.name).join(", ")}
                     </span>
                 </div>
             </section>

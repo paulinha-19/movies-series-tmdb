@@ -9,7 +9,7 @@ import { FaRegHeart } from "react-icons/fa";
 import NoImg from '../assets/img/no-image2.jpg';
 
 const DefaultPosterPath = ({ title, id, release_date, poster_path, overview, vote_average, vote_count }) => {
-    const { favorites, setFavorites, getMovieOrSerieStorage, setErrorMessage, loading, setLoading } = useContext(MoviesContext);
+    const { favorites, setFavorites, getMovieOrSerieStorage } = useContext(MoviesContext);
     const [showStatus, setShowStatus] = useState(false);
     const handleShow = () => setShowStatus(true);
     const handleClose = () => setShowStatus(false);
