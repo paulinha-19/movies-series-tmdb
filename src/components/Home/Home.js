@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 //componentes
-import MoviePopularDesc from '../Movies/Popular/MoviePopularDesc';
+import MoviePopular from '../Movies/Popular/MoviePopular';
 import SeriePopular from '../Series/SeriePopular/SeriePopular';
 //css
 import '../Movies/MovieList/MovieListHome.css';
@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <>
             <SeriePopular />
-            <MoviePopularDesc />
+            <MoviePopular />
         </>
     );
 }

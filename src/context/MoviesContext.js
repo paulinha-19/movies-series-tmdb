@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 import axios from "axios";
-import { SEARCH_API_MOVIE, MOVIES_DESC_POPULAR, MOVIES_NOW_PLAYING, MOVIES_TOP_RATED, MOVIES_TRENDING_DAY, SERIES_TOP_RATED, SERIES_DESC_POPULAR, SERIES_AIRING_TODAY } from "../api/config";
+import { SEARCH_API_MOVIE, MOVIES_ALL_POPULAR, MOVIES_NOW_PLAYING, MOVIES_TOP_RATED, MOVIES_UPCOMING, SERIES_TOP_RATED, SERIES_ALL_POPULAR, SERIES_AIRING_TODAY } from "../api/config";
 
 export const MoviesContext = createContext();
 
@@ -22,7 +22,7 @@ const MoviesContextProvider = props => {
 
   //MOVIES
   const getMoviePopular = async () => {
-    const popularResponse = await axios(MOVIES_DESC_POPULAR);
+    const popularResponse = await axios(MOVIES_ALL_POPULAR);
     const data = popularResponse.data.results;
     return data;
   }
@@ -33,8 +33,8 @@ const MoviesContextProvider = props => {
     return data;
   }
 
-  const getMovieTrendingDay = async () => {
-    const trendingResponse = await axios(MOVIES_TRENDING_DAY);
+  const getMovieUpcoming = async () => {
+    const trendingResponse = await axios(MOVIES_UPCOMING);
     const data = (trendingResponse.data.results);
     return data;
   }
@@ -54,7 +54,7 @@ const MoviesContextProvider = props => {
   }
 
   const getSeriePopular = async () => {
-    const serieResponse = await axios(SERIES_DESC_POPULAR);
+    const serieResponse = await axios(SERIES_ALL_POPULAR);
     const data = (serieResponse.data.results);
     return data;
   }
@@ -174,7 +174,7 @@ const MoviesContextProvider = props => {
 
 
   return (
-    <MoviesContext.Provider value={{ getMoviePopular, getMovieNowPlaying, getMovieTopRated, getMovieTrendingDay, getSerieTopRated, getSeriePopular, getSerieAiringToday, setFavorites, favorites, getMovieOrSerieStorage, genres, setGenres, setDetails, getSearch, search, setSearch, searchResult, setSearchResult, movies, setMovies, topRated, setTopRated, nowPlaying, setNowPlaying, trendingDay, setTrendingDay, series, setSeries, seriesOnTheAir, setSeriesOnTheAir, seriesTopRated, setSeriesTopRated }}>
+    <MoviesContext.Provider value={{ getMoviePopular, getMovieNowPlaying, getMovieTopRated, getMovieUpcoming, getSerieTopRated, getSeriePopular, getSerieAiringToday, setFavorites, favorites, getMovieOrSerieStorage, genres, setGenres, setDetails, getSearch, search, setSearch, searchResult, setSearchResult, movies, setMovies, topRated, setTopRated, nowPlaying, setNowPlaying, trendingDay, setTrendingDay, series, setSeries, seriesOnTheAir, setSeriesOnTheAir, seriesTopRated, setSeriesTopRated }}>
       {props.children}
     </MoviesContext.Provider>
   );

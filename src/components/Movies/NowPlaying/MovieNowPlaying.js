@@ -9,11 +9,13 @@ import '../MovieList/MovieListHome.css';
 
 const MovieNowPlaying = () => {
     const { getMovieNowPlaying } = useContext(MoviesContext);
-    const { data, isError, error, isLoading } = useQuery('tmdb', getMovieNowPlaying);
+    const { data, isError, error, isLoading } = useQuery("movieNowPlaying", getMovieNowPlaying, {
+        cacheTime: 5000,
+    });
     return (
         <>
             <div className="row">
-                <h2 className="row__title">No cinema</h2>
+                <h2 className="row__title">Nos cinemas</h2>
             </div>
             {
                 <div className="movieList  container d-flex flex-wrap justify-content-center  mt-4" >

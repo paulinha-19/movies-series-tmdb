@@ -9,7 +9,9 @@ import '../MovieList/MovieListHome.css'
 
 const MovieTopRated = () => {
   const { getMovieTopRated } = useContext(MoviesContext);
-  const { data, isError, error, isLoading } = useQuery('tmdb', getMovieTopRated);
+  const { data, isError, error, isLoading } = useQuery('movieTopRated', getMovieTopRated, {
+    cacheTime: 5000,
+  });
 
   return (
     <>

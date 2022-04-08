@@ -1,19 +1,12 @@
 //MOVIES
 export const apiKey = "afca2656cc551632bb3c538c9d52ccc3";
-export const MOVIES_ALL_POPULAR = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=`;
 
-//`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=`;
-export const MOVIES_DESC_POPULAR = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc`;
-
-//tendências globais
-export const MOVIES_TRENDING_DAY = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`;
-
+//popular
+export const MOVIES_ALL_POPULAR = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
 // mais bem avaliados no TMDB
 export const MOVIES_TOP_RATED = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`; 
-
 //nos cinemas
 export const MOVIES_NOW_PLAYING = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`;
-
 //próximos filmes nos cinemas
 export const MOVIES_UPCOMING = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`;
 
@@ -21,8 +14,7 @@ export const SEARCH_API_MOVIE = `https://api.themoviedb.org/3/search/movie?api_k
 export const MOVIES_API_DETAILS = `https://api.themoviedb.org/3/movie/`;
 
 //SERIES
-export const SERIES_ALL_POPULAR = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=`;
-export const SERIES_DESC_POPULAR = `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&sort_by=popularity.desc`;
+export const SERIES_ALL_POPULAR = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=1`;
 export const SERIES_AIRING_TODAY = `https://api.themoviedb.org/3/tv/airing_today?api_key=${apiKey}&language=en-US&page=1`;
 export const SERIES_TOP_RATED = `https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}&language=en-US&page=1`; 
 export const SEARCH_API_SERIES = `https://api.themoviedb.orsg/3/search/tv?&api_key=${apiKey}&query=`;

@@ -1,20 +1,22 @@
-import React, { useContext } from 'react';
-import DefaultPosterPath from '../../DefaultPosterPath';
-import Loader from '../../Loader';
-import { MoviesContext } from '../../../context/MoviesContext';
+import React, { useContext } from "react";
+import { MoviesContext } from "../../../context/MoviesContext";
+import Loader from "../../Loader";
+import DefaultPosterPath from "../../DefaultPosterPath";
 //query
-import { useQuery } from 'react-query';
+import { useQuery } from "react-query";
 //css
 import '../MovieList/MovieListHome.css';
 
+const MoviePopularDesc = () => {
+  const { getMoviePopular } = useContext(MoviesContext);
+  const { data, isLoading, isError, error } = useQuery("moviePopular", getMoviePopular, {
+    cacheTime: 5000,
+  });
 
-const MovieTrendingDay = () => {
-  const { getMovieTrendingDay } = useContext(MoviesContext);
-  const { data, isError, error, isLoading } = useQuery('tmdb', getMovieTrendingDay);
   return (
     <>
       <div className="row">
-        <h2 className="row__title">Tendências globais</h2>
+        <h2 className="row__title">Filmes populares</h2>
       </div>
       {
         <div className="movieList  container d-flex flex-wrap justify-content-center  mt-4" >
@@ -35,4 +37,5 @@ const MovieTrendingDay = () => {
   );
 }
 
-export default MovieTrendingDay
+
+export default MoviePopularDesc; 

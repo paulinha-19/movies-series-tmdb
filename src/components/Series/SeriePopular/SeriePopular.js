@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Loader from '../../Loader';
-import DefaultPosterPath from '../../DefaultPosterPath';
+import PosterPathTv from '../PosterPathTv';
 import { MoviesContext } from '../../../context/MoviesContext';
 //query
 import { useQuery } from 'react-query';
@@ -10,12 +10,14 @@ import '../../Movies/MovieList/MovieListHome.css'
 
 const SeriePopular = () => {
   const { getSeriePopular } = useContext(MoviesContext);
-  const { data, isError, error, isLoading } = useQuery('tmdb', getSeriePopular);
+  const { data, isError, error, isLoading, isFetching } = useQuery("seriePopular", getSeriePopular, {
+    cacheTime: 5000,
+  });
 
   return (
     <>
       <div className="row">
-        <h2 className="row__title">Series populares</h2>
+        <h2 className="row__title">Populares TMDB</h2>
       </div>
       {
         <div className="movieList  container d-flex flex-wrap justify-content-center  mt-4" >
@@ -26,7 +28,7 @@ const SeriePopular = () => {
               ) : (
                 data.map((movie) => {
                   return (
-                    <DefaultPosterPath {...movie} key={movie.id} />
+                    <PosterPathTv {...movie} key={movie.id} />
                   );
                 })
               )}

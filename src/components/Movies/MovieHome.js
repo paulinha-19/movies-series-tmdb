@@ -1,14 +1,14 @@
 import React from "react";
 //components
-import MoviePopularDesc from "./Popular/MoviePopularDesc";
+import MoviePopular from "./Popular/MoviePopular";
 import MovieNowPlaying from "./NowPlaying/MovieNowPlaying";
 import MovieTopRated from './TopRated/MovieTopRated';
-import MovieTrendingDay from './TrendingDay/MovieTrendingDay';
+import MovieUpcoming from './Upcoming/MovieUpcoming';
 const MovieHome = () => {
   return (
     <div>
-      <MoviePopularDesc />
-      <MovieTrendingDay />
+      <MoviePopular />
+      <MovieUpcoming />
       <MovieNowPlaying />
       <MovieTopRated />
     </div>

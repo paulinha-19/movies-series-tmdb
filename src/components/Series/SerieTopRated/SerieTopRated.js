@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Loader from '../../Loader';
-import DefaultPosterPath from '../../DefaultPosterPath';
+import PosterPathTv from '../PosterPathTv';
 import { MoviesContext } from '../../../context/MoviesContext';
 //query
 import { useQuery } from 'react-query';
@@ -10,7 +10,9 @@ import '../../Movies/MovieList/MovieListHome.css'
 
 const SerieTopRated = () => {
   const { getSerieTopRated } = useContext(MoviesContext);
-  const { data, isError, error, isLoading } = useQuery('tmdb', getSerieTopRated);
+  const { data, isError, error, isLoading, isFetching } = useQuery("serieTopRated", getSerieTopRated, {
+    cacheTime: 5000,
+  });
 
   return (
     <>
@@ -26,7 +28,7 @@ const SerieTopRated = () => {
               ) : (
                 data.map((movie) => {
                   return (
-                    <DefaultPosterPath {...movie} key={movie.id} />
+                    <PosterPathTv {...movie} key={movie.id} />
                   );
                 })
               )}
