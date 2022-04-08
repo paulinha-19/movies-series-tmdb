@@ -12,7 +12,9 @@ const MovieDetail = ({ title, release_date, poster_path, overview, vote_average,
         return data;
     }
     
-    const { data, isError, error, isLoading } = useQuery('tmdb', getDatail);
+    const { data, isError, error, isLoading } = useQuery('detailsMovie', getDatail, {
+        cacheTime: 1000,
+      });
 
     return (
         <div className="movie_detail">

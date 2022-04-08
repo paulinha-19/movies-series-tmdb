@@ -11,7 +11,7 @@ import '../../Movies/MovieList/MovieListHome.css'
 const SeriePopular = () => {
   const { getSeriePopular } = useContext(MoviesContext);
   const { data, isError, error, isLoading, isFetching } = useQuery("seriePopular", getSeriePopular, {
-    cacheTime: 5000,
+    cacheTime: 1000,
   });
 
   return (

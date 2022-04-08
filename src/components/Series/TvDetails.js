@@ -12,7 +12,9 @@ const DetailTv = ({ id, name, poster_path, overview, vote_average, vote_count, f
     return data;
   }
 
-  const { data, isError, error, isLoading } = useQuery('detailsTv', getDatail);
+  const { data, isError, error, isLoading } = useQuery('detailsTv', getDatail, {
+    cacheTime: 1000,
+  });
   return (
     <div className="movie_detail">
       <section>
@@ -50,7 +52,7 @@ const DetailTv = ({ id, name, poster_path, overview, vote_average, vote_count, f
             </div>
           </div>
         </div>
-        {/* <div className="vote_averageField">
+        {/* <div className="">
           <b>Genre:</b>
           <span>
             {data.map(genre => genre.name).join(", ")}

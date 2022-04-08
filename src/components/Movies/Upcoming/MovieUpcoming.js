@@ -11,7 +11,7 @@ import '../MovieList/MovieListHome.css';
 const MovieTrendingDay = () => {
   const { getMovieUpcoming } = useContext(MoviesContext);
   const { data, isError, error, isLoading } = useQuery('movieUpcoming', getMovieUpcoming, {
-    cacheTime: 5000,
+    cacheTime: 1000,
   });
   return (
     <>

@@ -10,7 +10,7 @@ import '../MovieList/MovieListHome.css';
 const MovieNowPlaying = () => {
     const { getMovieNowPlaying } = useContext(MoviesContext);
     const { data, isError, error, isLoading } = useQuery("movieNowPlaying", getMovieNowPlaying, {
-        cacheTime: 5000,
+        cacheTime: 1000,
     });
     return (
         <>

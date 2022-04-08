@@ -10,7 +10,7 @@ import '../MovieList/MovieListHome.css';
 const MoviePopularDesc = () => {
   const { getMoviePopular } = useContext(MoviesContext);
   const { data, isLoading, isError, error } = useQuery("moviePopular", getMoviePopular, {
-    cacheTime: 5000,
+    cacheTime: 1000,
   });
 
   return (
