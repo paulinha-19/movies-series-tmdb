@@ -2,16 +2,23 @@ import { useState, useContext, useEffect } from 'react';
 import { MoviesContext } from '../../context/MoviesContext';
 import TvDetails from './TvDetails';
 import { IMAGES_API_MOVIE } from '../../api/config';
-import { Modal } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap';
+import { useQuery } from 'react-query';
 //NoImg
 import NoImg from '../../assets/img/no-image2.jpg';
 
 const PosterPathTv = ({ name, id, first_air_date, poster_path, overview, vote_average, vote_count }) => {
-    const { favorites, setFavorites, getMovieOrSerieStorage } = useContext(MoviesContext);
+    const { favorites, setFavorites, getMovieOrSerieStorage, getSerieDatail } = useContext(MoviesContext);
     const [showStatus, setShowStatus] = useState(false);
     const handleShow = () => setShowStatus(true);
     const handleClose = () => setShowStatus(false);
     const [isFavorite, setIsFavorite] = useState(false);
+    //query
+    const { data, isError, error, isLoading } = useQuery(['teste2', id], getSerieDatail, {
+        cacheTime: 1000,
+    });
+    const genreList = data?.map(genre => genre?.name).join(", ");
+
     useEffect(() => {
         if (favorites.includes(id)) {
             setIsFavorite(!isFavorite);
@@ -58,7 +65,7 @@ const PosterPathTv = ({ name, id, first_air_date, poster_path, overview, vote_av
                 <Modal.Header closeButton >
                 </Modal.Header>
                 <Modal.Body >
-                    <TvDetails id={id} name={name} poster_path={poster_path} overview={overview} vote_average={vote_average} vote_count={vote_count} first_air_date={first_air_date} />
+                    <TvDetails genre={genreList} id={id} name={name} poster_path={poster_path} overview={overview} vote_average={vote_average} vote_count={vote_count} first_air_date={first_air_date} />
                 </Modal.Body>
             </Modal>
         </div>

@@ -1,20 +1,8 @@
 import React from 'react';
-import axios from 'axios';
-import { IMAGES_API_MOVIE, apiKey, SERIES_API_DETAILS } from '../../api/config';
+import { IMAGES_API_MOVIE } from '../../api/config';
 import StarRating from '../StarRating/StarRating';
-//query
-import { useQuery } from "react-query";
 
-const DetailTv = ({ id, name, poster_path, overview, vote_average, vote_count, first_air_date }) => {
-  const getDatail = async () => {
-    const detailResponse = await axios(`${SERIES_API_DETAILS}${id}?api_key=${apiKey}&language=en-US`);
-    const data = (detailResponse.data.genres);
-    return data;
-  }
-
-  const { data, isError, error, isLoading } = useQuery('detailsTv', getDatail, {
-    cacheTime: 1000,
-  });
+const DetailTv = ({ genre, name, poster_path, overview, vote_average, vote_count, first_air_date }) => {
   return (
     <div className="movie_detail">
       <section>
@@ -52,12 +40,13 @@ const DetailTv = ({ id, name, poster_path, overview, vote_average, vote_count, f
             </div>
           </div>
         </div>
-        {/* <div className="">
-          <b>Genre:</b>
+        <div className="">
+          <b>Genre: </b>
           <span>
-            {data.map(genre => genre.name).join(", ")}
+            {genre}
           </span>
-        </div> */}
+        </div>
+
       </section>
     </div>
   )

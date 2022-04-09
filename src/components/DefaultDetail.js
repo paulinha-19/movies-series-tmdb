@@ -1,21 +1,7 @@
 import React from "react";
-import axios from "axios";
-import { IMAGES_API_MOVIE, MOVIES_API_DETAILS, apiKey } from "../api/config";
+import { IMAGES_API_MOVIE } from "../api/config";
 import StarRating from "./StarRating/StarRating";
-//query
-import { useQuery } from "react-query";
-const MovieDetail = ({ title, release_date, poster_path, overview, vote_average, vote_count, id }) => {
-    // const { genres, setGenres, setDetails } = useContext(MoviesContext);
-    const getDatail = async () => {
-        const detailResponse = await axios(`${MOVIES_API_DETAILS}${id}?api_key=${apiKey}&language=en-US`);
-        const data = (detailResponse.data.genres);
-        return data;
-    }
-    
-    const { data, isError, error, isLoading } = useQuery('detailsMovie', getDatail, {
-        cacheTime: 1000,
-      });
-
+const MovieDetail = ({ genre, poster_path, overview, vote_average, vote_count, title, release_date }) => {
     return (
         <div className="movie_detail">
             <section>
@@ -53,12 +39,12 @@ const MovieDetail = ({ title, release_date, poster_path, overview, vote_average,
                         </div>
                     </div>
                 </div>
-                {/* <div className="vote_averageField">
-                    <b>Genre:</b>
+                <div>
+                    <b>Genre: </b>
                     <span>
-                        {data.map(genre => genre.name).join(", ")}
+                        {genre}
                     </span>
-                </div> */}
+                </div>
             </section>
         </div>
     );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 import axios from "axios";
-import { SEARCH_API_MOVIE, MOVIES_ALL_POPULAR, MOVIES_NOW_PLAYING, MOVIES_TOP_RATED, MOVIES_UPCOMING, SERIES_TOP_RATED, SERIES_ALL_POPULAR, SERIES_AIRING_TODAY } from "../api/config";
+import { SEARCH_API_MOVIE, MOVIES_ALL_POPULAR, MOVIES_NOW_PLAYING, MOVIES_TOP_RATED, MOVIES_UPCOMING, SERIES_TOP_RATED, SERIES_ALL_POPULAR, SERIES_AIRING_TODAY, MOVIES_API_DETAILS, SERIES_API_DETAILS, apiKey } from "../api/config";
 
 export const MoviesContext = createContext();
 
@@ -45,6 +45,13 @@ const MoviesContextProvider = props => {
     return data;
   }
 
+  const getMovieDatail = async ({ queryKey }) => {
+    const [_key, ID] = queryKey
+    const detailResponse = await axios(`${MOVIES_API_DETAILS}${ID}?api_key=${apiKey}&language=en-US`);
+    const data = (detailResponse.data.genres);
+    return data;
+}
+
   //SERIES
 
   const getSerieTopRated = async () => {
@@ -65,67 +72,12 @@ const MoviesContextProvider = props => {
     return data;
   }
 
-  // const getMovies = async () => {
-  //   try {
-  //     const moviesResponse = await axios(MOVIES_DESC_POPULAR);
-  //     const dataMovie = (moviesResponse.data.results);
-  //     setMovies(dataMovie);
-  //     setErrorMessage("");
-  //   }
-  //   catch (error) {
-  //     alert(error.message);
-  //     setErrorMessage(error.message);
-  //   }
-  //   finally {
-  //     setLoading(false);
-  //   }
-  // }
-
-  // const getMoviesNowPlaying = async () => {
-  //   try {
-  //     const moviesResponse = await axios(MOVIES_NOW_PLAYING);
-  //     const dataMovie = (moviesResponse.data.results);
-  //     setNowPlaying(dataMovie);
-  //     setErrorMessage("");
-  //   }
-  //   catch (error) {
-  //     alert(error.message);
-  //     setErrorMessage(error.message);
-  //   }
-  //   finally {
-  //     setLoading(false);
-  //   }
-  // }
-  // const getTrendingDay = async () => {
-  //   try {
-  //     const moviesResponse = await axios(MOVIES_TRENDING_DAY);
-  //     const dataMovie = (moviesResponse.data.results);
-  //     setTrendingDay(dataMovie);
-  //     setErrorMessage("");
-  //   }
-  //   catch (error) {
-  //     alert(error.message);
-  //     setErrorMessage(error.message);
-  //   }
-  //   finally {
-  //     setLoading(false);
-  //   }
-  // }
-  // const getMoviesTopRated = async () => {
-  //   try {
-  //     const moviesResponse = await axios(MOVIES_TOP_RATED);
-  //     const dataMovie = (moviesResponse.data.results);
-  //     setTopRated(dataMovie);
-  //     setErrorMessage("");
-  //   }
-  //   catch (error) {
-  //     alert(error.message);
-  //     setErrorMessage(error.message);
-  //   }
-  //   finally {
-  //     setLoading(false);
-  //   }
-  // }
+  const getSerieDatail = async ({ queryKey }) => {
+    const [_key, ID] = queryKey
+    const detailResponse = await axios(`${SERIES_API_DETAILS}${ID}?api_key=${apiKey}&language=en-US`);
+    const data = (detailResponse.data.genres);
+    return data;
+}
 
   const getSearch = async () => {
     try {
@@ -174,7 +126,7 @@ const MoviesContextProvider = props => {
 
 
   return (
-    <MoviesContext.Provider value={{ getMoviePopular, getMovieNowPlaying, getMovieTopRated, getMovieUpcoming, getSerieTopRated, getSeriePopular, getSerieAiringToday, setFavorites, favorites, getMovieOrSerieStorage, genres, setGenres, setDetails, getSearch, search, setSearch, searchResult, setSearchResult, movies, setMovies, topRated, setTopRated, nowPlaying, setNowPlaying, trendingDay, setTrendingDay, series, setSeries, seriesOnTheAir, setSeriesOnTheAir, seriesTopRated, setSeriesTopRated }}>
+    <MoviesContext.Provider value={{ getMovieDatail, getMoviePopular, getMovieNowPlaying, getMovieTopRated, getMovieUpcoming, getSerieDatail, getSerieTopRated, getSeriePopular, getSerieAiringToday, setFavorites, favorites, getMovieOrSerieStorage, genres, setGenres, setDetails, getSearch, search, setSearch, searchResult, setSearchResult, movies, setMovies, topRated, setTopRated, nowPlaying, setNowPlaying, trendingDay, setTrendingDay, series, setSeries, seriesOnTheAir, setSeriesOnTheAir, seriesTopRated, setSeriesTopRated }}>
       {props.children}
     </MoviesContext.Provider>
   );

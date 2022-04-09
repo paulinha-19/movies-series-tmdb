@@ -5,15 +5,23 @@ import { IMAGES_API_MOVIE } from '../api/config';
 import { Modal } from "react-bootstrap";
 //icons
 import { FaRegHeart } from "react-icons/fa";
+import { useQuery } from 'react-query';
 //img
 import NoImg from '../assets/img/no-image2.jpg';
 
 const DefaultPosterPath = ({ title, id, release_date, poster_path, overview, vote_average, vote_count }) => {
-    const { favorites, setFavorites, getMovieOrSerieStorage } = useContext(MoviesContext);
+    const { favorites, setFavorites, getMovieOrSerieStorage, getMovieDatail } = useContext(MoviesContext);
     const [showStatus, setShowStatus] = useState(false);
     const handleShow = () => setShowStatus(true);
     const handleClose = () => setShowStatus(false);
     const [isFavorite, setIsFavorite] = useState(false);
+    //query
+    const { data, isError, error, isLoading } = useQuery(['teste', id], getMovieDatail, {
+        cacheTime: 1000,
+    });
+    const genreList = data?.map(genre => genre?.name).join(", ");
+ 
+    //favorites
     useEffect(() => {
         if (favorites.includes(id)) {
             setIsFavorite(!isFavorite);
@@ -47,6 +55,7 @@ const DefaultPosterPath = ({ title, id, release_date, poster_path, overview, vot
         <div>
             <div className="movie">
                 <img src={poster_path ? IMAGES_API_MOVIE + poster_path : NoImg} onClick={handleShow} alt={title} />
+                <span> {genreList}</span>
                 <i style={isFavorite ? { color: "#ff0000" } : { color: "#000" }}
                     className={isFavorite ? 'heartIcon bi bi-heart-fill' : 'hidden heartIcon bi bi-heart-fill'}
                     // className={isFavorite ? <FaRegHeart className='heartIcon'/> : <FaRegHeart className='hidden heartIcon'/>}
@@ -60,7 +69,7 @@ const DefaultPosterPath = ({ title, id, release_date, poster_path, overview, vot
                 <Modal.Header closeButton >
                 </Modal.Header>
                 <Modal.Body >
-                    <MovieDetail id={id} poster_path={poster_path} overview={overview} vote_average={vote_average} title={title} release_date={release_date} vote_count={vote_count} />
+                    <MovieDetail genre={genreList} id={id} poster_path={poster_path} overview={overview} vote_average={vote_average} vote_count={vote_count} title={title} release_date={release_date} />
                 </Modal.Body>
             </Modal>
         </div>
@@ -68,3 +77,10 @@ const DefaultPosterPath = ({ title, id, release_date, poster_path, overview, vot
 }
 
 export default DefaultPosterPath;
+
+   // const { detailsData } = data;
+    //       return detailsData.map(post => (
+    //         <div>
+    //           <p>{post.id}</p>
+    //         </div>
+    //       ));
