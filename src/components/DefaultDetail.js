@@ -39,7 +39,7 @@ const MovieDetail = ({ genre, poster_path, overview, vote_average, vote_count, t
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className="genre_info">
                     <b>Genre: </b>
                     <span>
                         {genre}

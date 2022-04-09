@@ -40,7 +40,7 @@ const DetailTv = ({ genre, name, poster_path, overview, vote_average, vote_count
             </div>
           </div>
         </div>
-        <div className="">
+        <div className="genre_info">
           <b>Genre: </b>
           <span>
             {genre}

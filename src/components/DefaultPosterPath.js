@@ -16,7 +16,7 @@ const DefaultPosterPath = ({ title, id, release_date, poster_path, overview, vot
     const handleClose = () => setShowStatus(false);
     const [isFavorite, setIsFavorite] = useState(false);
     //query
-    const { data, isError, error, isLoading } = useQuery(['teste', id], getMovieDatail, {
+    const { data, isError, error, isLoading } = useQuery(['movieDetail', id], getMovieDatail, {
         cacheTime: 1000,
     });
     const genreList = data?.map(genre => genre?.name).join(", ");

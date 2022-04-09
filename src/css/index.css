@@ -340,7 +340,8 @@
 }
 
 .movie_releaseDate span,
-.Vote_info span {
+.Vote_info span,
+.genre_info span {
     color: var(--primary);
     font-family: 'Acme', sans-serif;
 }

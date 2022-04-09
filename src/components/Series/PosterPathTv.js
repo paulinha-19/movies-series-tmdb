@@ -14,7 +14,7 @@ const PosterPathTv = ({ name, id, first_air_date, poster_path, overview, vote_av
     const handleClose = () => setShowStatus(false);
     const [isFavorite, setIsFavorite] = useState(false);
     //query
-    const { data, isError, error, isLoading } = useQuery(['teste2', id], getSerieDatail, {
+    const { data, isError, error, isLoading } = useQuery(['tvDetail', id], getSerieDatail, {
         cacheTime: 1000,
     });
     const genreList = data?.map(genre => genre?.name).join(", ");
